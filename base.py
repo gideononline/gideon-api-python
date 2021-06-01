@@ -1,4 +1,5 @@
 """Provides a single point for authorization and queries"""
+from typing import Any, Dict, Optional
 import os
 import requests
 
@@ -6,7 +7,9 @@ _API_KEY = os.environ['GIDEON_API_KEY']
 _API_ORIGIN = 'https://api.gideononline.com'
 
 
-def api_query(path, params=None):
+def api_query(
+    path: str, params: Optional[Dict] = None
+) -> Optional[Dict[str, Any]]:
     """Queries the GIDEON API
 
     Args:
