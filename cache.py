@@ -6,8 +6,7 @@ from typing import Any, Dict, Optional
 import os.path
 import pickle
 
-CACHE_FILE = os.path.join(os.path.dirname(__file__), 'cache.picke')
-API_PATH = 'api_path'
+CACHE_FILE = os.path.join(os.path.dirname(__file__), 'cache.pickle')
 TIMESTAMP = 'timestamp'
 RESPONSE = 'response'
 
@@ -43,7 +42,7 @@ class GideonAPICache:
         self._unsaved_changes = 0
 
         if persistent_cache and os.path.isfile(CACHE_FILE):
-            with open(CACHE_FILE, 'b') as f:
+            with open(CACHE_FILE, 'rb') as f:
                 try:
                     self._cache_dictonary = pickle.load(f)
                 except PermissionError:
@@ -146,13 +145,13 @@ class GideonAPICache:
         now = dt.now()
         # Check if the query has been stored previously
         if api_path in self._cache_dictonary:
-            self._cache_dictonary[API_PATH][TIMESTAMP] = now
+            self._cache_dictonary[api_path][TIMESTAMP] = now
             # Only update and push cache if there is a change
-            if value != self._cache_dictonary[API_PATH][RESPONSE]:
-                self._cache_dictonary[API_PATH][RESPONSE] = value
+            if value != self._cache_dictonary[api_path][RESPONSE]:
+                self._cache_dictonary[api_path][RESPONSE] = value
                 self.count_persistent_changes()
         else:
-            self._cache_dictonary[API_PATH] = {
+            self._cache_dictonary[api_path] = {
                 TIMESTAMP: now,
                 RESPONSE: value,
             }
