@@ -10,10 +10,10 @@ _BAD_PATH_RESP = {
     'message': "API documentation: 'https://api-doc.gideononline.com'"
 }
 
-cache = GideonAPICache(24)
+cache = GideonAPICache(24, buffer_size=1)
 
 
-def online_query(
+def online_query_api(
     path: str,
     return_response_object: bool = False
 ) -> Union[Optional[Dict[str, Any]], requests.Response]:
@@ -31,6 +31,7 @@ def online_query(
     Raises:
         ConnectionError: If the request does not return a 200 status code
     """
+    sleep(0.5)
     r = requests.get(
         _API_ORIGIN+path,
         headers={'Authorization': f'api_key {_API_KEY}'}
@@ -48,7 +49,7 @@ def online_query(
     raise ConnectionError('Could not connect to GIDEON API')
 
 
-def api_query(
+def query_api(
     api_path: str,
     force_online: bool = False,
     cache_expiration_hours: Optional[int] = 24
@@ -68,7 +69,7 @@ def api_query(
     """
     cached_respone = cache.query(api_path, cache_expiration_hours)
     if force_online or cached_respone is None:
-        online_respone = online_query(api_path)
+        online_respone = online_query_api(api_path)
         if online_respone is not None:
             cache.write(api_path, online_respone)
             return online_respone
