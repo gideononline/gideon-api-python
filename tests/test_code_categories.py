@@ -37,3 +37,11 @@ class TestCategoryCheck(unittest.TestCase):
         self.assertEqual(check_category(' vaccines'), '/vaccines')
         self.assertEqual(check_category(' drugs '), '/drugs')
         self.assertEqual(check_category('\tdiseases\n'), '/diseases')
+
+    def test_variations(self):
+        self.assertEqual(check_category('disease'), '/diseases')
+        self.assertEqual(check_category('region'), '/travel/regions')
+        self.assertEqual(check_category('country'), '/countries')
+        self.assertEqual(check_category('bacterium'), '/microbiology/bacteria')
+        self.assertEqual(check_category('yeast'), '/microbiology/yeasts')
+
