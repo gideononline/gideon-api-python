@@ -1,11 +1,14 @@
 """Interfaces with the GIDEON disease list"""
 
-from typing import Optional
+from typing import Optional, Union
 from gideon_api_python.base import api_query
+from gideon_api_python.codes.categories import get_endpoint
 
 PATH_DISEASE = '/diseases'
 
 _CACHED_DISEASE_LIST = None
+
+
 
 def fetch_diseases(try_cached: bool = True):
     """Fetches the disease list from GIDEON API
@@ -72,3 +75,21 @@ def get_disease_code_from_name(
             return None
         if len(possible_diseases) == 1:
             return possible_diseases[0]['disease_code']
+
+
+def lookup_item(category: str, item: str) -> Optional[Union[int, str]]:
+    """Looks up the GIDEON ID for a particular item.
+
+    Args:
+        category: The GIDEON API to search from such as diseases, vaccines,
+            countries, etc.
+        item:
+            The name of the item, such as a particular disease or bacteria.
+    
+    Returns:
+        If the item is found, the GIDEON API code
+    """
+    api_endpoint = get_endpoint(category)
+    all_category_items = api_query(api_endpoint)
+    
+    search_item = item.strip().lower()

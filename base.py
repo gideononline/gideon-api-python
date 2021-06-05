@@ -31,7 +31,7 @@ def online_query_api(
     Raises:
         ConnectionError: If the request does not return a 200 status code
     """
-    sleep(0.5)
+    # sleep(0.5)
     r = requests.get(
         _API_ORIGIN+path,
         headers={'Authorization': f'api_key {_API_KEY}'}
