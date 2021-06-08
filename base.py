@@ -4,16 +4,31 @@ import os
 import requests
 from gideon_api_python.cache import GideonAPICache
 
-_API_KEY = os.environ['GIDEON_API_KEY']
+
+class Authorization:
+    """Maintains the authorization for accessing the GIDEON API"""
+    def __init__(self, api_key: Optional[str] = None) -> None:
+        self._api_key = api_key
+        self._using_key = api_key is not None
+
+    def get_authorization_header(self):
+        """Produces a dictonary that can be passed to the requests
+            library as a header parameter.
+        """
+        auth = f'api_key {self._api_key}' if self._using_key else None
+        return {'Authorization': auth}
+
+
 _API_ORIGIN = 'https://api.gideononline.com'
 _BAD_PATH_RESP = {
     'message': "API documentation: 'https://api-doc.gideononline.com'"
 }
 
+authorization = Authorization(os.environ['GIDEON_API_KEY'])
 cache = GideonAPICache(24, buffer_size=1)
 
 
-def online_query_api(
+def query_gideon_api_online(
     path: str,
     return_response_object: bool = False
 ) -> Union[Optional[Dict[str, Any]], requests.Response]:
@@ -34,22 +49,21 @@ def online_query_api(
     # sleep(0.5)
     r = requests.get(
         _API_ORIGIN+path,
-        headers={'Authorization': f'api_key {_API_KEY}'}
+        headers=authorization.get_authorization_header()
     )
     if return_response_object:
         return r
     if r.status_code == 200:
-        query_response = r.json()
-        if query_response != _BAD_PATH_RESP:
-            return r.json()
-        raise ValueError((
+        return r.json()
+    if r.status_code == 404:
+        raise ValueError(
             f'Bad GIDEON API path: "{path}" - '
             'Refer to https://api-doc.gideononline.com'
-        ))
+        )
     raise ConnectionError('Could not connect to GIDEON API')
 
 
-def query_api(
+def query_gideon_api(
     api_path: str,
     force_online: bool = False,
     cache_expiration_hours: Optional[int] = 24
@@ -67,9 +81,10 @@ def query_api(
     Returns:
         The API JSON response in the form of a Python dictonary.
     """
+    # First try a cached response
     cached_respone = cache.query(api_path, cache_expiration_hours)
     if force_online or cached_respone is None:
-        online_respone = online_query_api(api_path)
+        online_respone = query_gideon_api_online(api_path)
         if online_respone is not None:
             cache.write(api_path, online_respone)
             return online_respone

@@ -1,6 +1,6 @@
 import os.path
 import pickle
-from gideon_api_python.base import query_api
+from gideon_api_python.base import query_gideon_api
 
 _LOOKUP_JSON = os.path.join(os.path.dirname(__file__), 'lookup.pickle')
 

@@ -1,5 +1,8 @@
+from time import sleep
 import unittest
 from gideon_api_python.codes.lookup import lookup_item
+
+CALL_DELAY = 1
 
 class TestLookupItemExact(unittest.TestCase):
     def test_lookup_diseases(self):
@@ -13,6 +16,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for disease, id_ in disease_and_id:
             self.assertEqual(lookup_item('diseases', disease), id_)
+            sleep(CALL_DELAY)
 
     def test_lookup_drugs(self):
         drug_and_id = (
@@ -25,6 +29,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for drug, id_ in drug_and_id:
             self.assertEqual(lookup_item('drugs', drug), id_)
+            sleep(CALL_DELAY)
 
     def test_lookup_vaccines(self):
         vaccine_and_id = (
@@ -34,6 +39,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for vaccine, id_ in vaccine_and_id:
             self.assertEqual(lookup_item('vaccines', vaccine), id_)
+            sleep(CALL_DELAY)
 
     def test_lookup_bacteria(self):
         bacterium_and_id = (
@@ -46,6 +52,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for bacteria, id_ in bacterium_and_id:
             self.assertEqual(lookup_item('bacteria', bacteria), id_)
+            sleep(CALL_DELAY)
 
     def test_lookup_mycobacteria(self):
         mycobacterium_and_id = (
@@ -55,6 +62,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for mycobacteria, id_ in mycobacterium_and_id:
             self.assertEqual(lookup_item('mycobacteria', mycobacteria), id_)
+            sleep(CALL_DELAY)
 
     def test_lookup_yeasts(self):
         yeast_and_id = (
@@ -64,6 +72,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for yeast, id_ in yeast_and_id:
             self.assertEqual(lookup_item('yeasts', yeast), id_)
+            sleep(CALL_DELAY)
 
     def test_lookup_regions(self):
         region_and_id = (
@@ -73,6 +82,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for region, id_ in region_and_id:
             self.assertEqual(lookup_item('regions', region), id_)
+            sleep(CALL_DELAY)
     
     def test_lookup_countries(self):
         country_and_id = (
@@ -82,4 +92,4 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for country, id_ in country_and_id:
             self.assertEqual(lookup_item('countries', country), id_)
-
+            sleep(CALL_DELAY)
