@@ -2,7 +2,6 @@
 from datetime import datetime as dt
 from time import sleep
 from typing import Any, Dict, Optional, Union
-import os
 import requests
 from gideon_api_python.query.cache import GideonAPICache
 
@@ -109,5 +108,3 @@ class GIDEON:
                 self._cache.write(api_path, online_respone)
                 return online_respone
         return cached_respone
-
-gideon_api = GIDEON(os.environ['GIDEON_API_KEY'])

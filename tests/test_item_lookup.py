@@ -1,10 +1,15 @@
-from time import sleep
+import os
 import unittest
+from gideon_api_python import GIDEON
 from gideon_api_python.codes.lookup import lookup_item
 
-CALL_DELAY = 1
 
 class TestLookupItemExact(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls._gideon_api = GIDEON(os.environ['GIDEON_API_KEY'], 0.5)
+
     def test_lookup_diseases(self):
         disease_and_id = (
             ('Anthrax', 10100),
@@ -15,8 +20,10 @@ class TestLookupItemExact(unittest.TestCase):
             ('Zika', 12680),
         )
         for disease, id_ in disease_and_id:
-            self.assertEqual(lookup_item('diseases', disease), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'diseases', disease),
+                id_
+            )
 
     def test_lookup_drugs(self):
         drug_and_id = (
@@ -28,8 +35,10 @@ class TestLookupItemExact(unittest.TestCase):
             ('Sofosbuvir / Velpatasvir', 21219),
         )
         for drug, id_ in drug_and_id:
-            self.assertEqual(lookup_item('drugs', drug), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'drugs', drug),
+                id_
+            )
 
     def test_lookup_vaccines(self):
         vaccine_and_id = (
@@ -38,8 +47,10 @@ class TestLookupItemExact(unittest.TestCase):
             ('Varicella-Zoster immune globulin', 30380),
         )
         for vaccine, id_ in vaccine_and_id:
-            self.assertEqual(lookup_item('vaccines', vaccine), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'vaccines', vaccine),
+                id_
+            )
 
     def test_lookup_bacteria(self):
         bacterium_and_id = (
@@ -51,8 +62,10 @@ class TestLookupItemExact(unittest.TestCase):
             ('Staphylococcus aureus', 4700),
         )
         for bacteria, id_ in bacterium_and_id:
-            self.assertEqual(lookup_item('bacteria', bacteria), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'bacteria', bacteria),
+                id_
+            )
 
     def test_lookup_mycobacteria(self):
         mycobacterium_and_id = (
@@ -61,8 +74,10 @@ class TestLookupItemExact(unittest.TestCase):
             ('Mycolicibacter kumamotonensis', 8203),
         )
         for mycobacteria, id_ in mycobacterium_and_id:
-            self.assertEqual(lookup_item('mycobacteria', mycobacteria), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'mycobacteria', mycobacteria),
+                id_
+            )
 
     def test_lookup_yeasts(self):
         yeast_and_id = (
@@ -71,8 +86,10 @@ class TestLookupItemExact(unittest.TestCase):
             ('Trichosporon mycotoxinivorans', 7447),
         )
         for yeast, id_ in yeast_and_id:
-            self.assertEqual(lookup_item('yeasts', yeast), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'yeasts', yeast),
+                id_
+            )
 
     def test_lookup_regions(self):
         region_and_id = (
@@ -81,9 +98,11 @@ class TestLookupItemExact(unittest.TestCase):
             ('North America', 15),
         )
         for region, id_ in region_and_id:
-            self.assertEqual(lookup_item('regions', region), id_)
-            sleep(CALL_DELAY)
-    
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'regions', region),
+                id_
+            )
+
     def test_lookup_countries(self):
         country_and_id = (
             ('China', 'G140'),
@@ -91,5 +110,7 @@ class TestLookupItemExact(unittest.TestCase):
             ('United Kingdom', 'G291'),
         )
         for country, id_ in country_and_id:
-            self.assertEqual(lookup_item('countries', country), id_)
-            sleep(CALL_DELAY)
+            self.assertEqual(
+                lookup_item(self._gideon_api, 'countries', country),
+                id_
+            )
