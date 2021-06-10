@@ -11,6 +11,7 @@ pandas = "*"
 ipython = "*"
 pylint = "*"
 yapf = "*"
+jupyterlab = "*"
 
 [requires]
 python_version = "3.8"
