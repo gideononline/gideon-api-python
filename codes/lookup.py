@@ -5,6 +5,11 @@ from gideon_api_python.codes.categories import get_endpoint
 
 ENDPOINT_ID_NAME = {
     '/diseases': ('disease_code', 'disease'),
+    '/diseases/fingerprint/agents': ('agent_code', 'agent'),
+    '/diseases/fingerprint/vectors': ('vector_code', 'vector'),
+    '/diseases/fingerprint/vehicles': ('vehicle_code', 'vehicle'),
+    '/diseases/fingerprint/reservoirs': ('reservoir_code', 'reservoir'),
+    '/diseases/fingerprint/countries': ('country_code', 'country'),
     '/drugs': ('drug_code', 'drug'),
     '/vaccines': ('vaccine_code', 'vaccine'),
     '/microbiology/bacteria': ('bacteria_code', 'bacteria'),

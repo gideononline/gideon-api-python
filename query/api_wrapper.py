@@ -2,6 +2,7 @@
 from datetime import datetime as dt
 from time import sleep
 from typing import Any, Dict, Optional, Union
+from urllib.parse import urlencode
 import requests
 from gideon_api_python.query.cache import GideonAPICache
 
@@ -40,6 +41,7 @@ class GIDEON:
     def query_gideon_api_online(
         self,
         path: str,
+        params: Optional[Dict] = None,
         return_response_object: bool = False
     ) -> Union[Optional[Dict[str, Any]], requests.Response]:
         """Queries the GIDEON API online
@@ -47,6 +49,8 @@ class GIDEON:
         Args:
             path: The path from the GIDEON domain. This string is the
                 same as what is listed on the API docs.
+            params: A dictonary of key-value pairs which will be
+                converted to URL parameters.
             return_response_object: Returns the Response object with
                 the entire call instead of just the response.
 
@@ -67,6 +71,7 @@ class GIDEON:
 
         r = requests.get(
             _API_ORIGIN+path,
+            params=params,
             headers=self._auth.get_authorization_header()
         )
         if return_response_object:
@@ -84,6 +89,7 @@ class GIDEON:
     def query_gideon_api(
         self,
         api_path: str,
+        params: Optional[Dict] = None,
         force_online: bool = False,
         cache_expiration_hours: Optional[int] = 24
     ) -> Optional[Dict[str, Any]]:
@@ -100,11 +106,16 @@ class GIDEON:
         Returns:
             The API JSON response in the form of a Python dictonary.
         """
+        # Create the URL to cache
+        uri = api_path
+        if isinstance(params, dict):
+            uri = f'{uri}?{urlencode(params)}'
+
         # First try a cached response
-        cached_respone = self._cache.query(api_path, cache_expiration_hours)
+        cached_respone = self._cache.query(uri, cache_expiration_hours)
         if force_online or cached_respone is None:
-            online_respone = self.query_gideon_api_online(api_path)
+            online_respone = self.query_gideon_api_online(api_path, params)
             if online_respone is not None:
-                self._cache.write(api_path, online_respone)
+                self._cache.write(uri, online_respone)
                 return online_respone
         return cached_respone
