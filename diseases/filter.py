@@ -1,10 +1,10 @@
 from typing import Optional, Union
+from gideon_api_python import gideon_api
 from gideon_api_python.codes import lookup_item
 
 CODE_OR_NAME = Optional[Union[int, str]]
 
-def filter_diseases(gideon_api,
-                    agent: CODE_OR_NAME = None,
+def filter_diseases(agent: CODE_OR_NAME = None,
                     vector: CODE_OR_NAME = None,
                     vehicle: CODE_OR_NAME = None,
                     resivoir: CODE_OR_NAME = None,

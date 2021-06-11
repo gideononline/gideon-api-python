@@ -1,6 +1,7 @@
 """Interfaces with the GIDEON disease list"""
 
 from typing import Optional, Union
+from gideon_api_python import gideon_api
 from gideon_api_python.codes.categories import get_endpoint
 
 ENDPOINT_ID_NAME = {
@@ -20,8 +21,7 @@ ENDPOINT_ID_NAME = {
 }
 
 
-def lookup_item(gideon_api,
-                category: str,
+def lookup_item(category: str,
                 item: str) -> Optional[Union[int, str]]:
     """Looks up the GIDEON ID for a particular item.
 
