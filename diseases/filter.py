@@ -4,6 +4,7 @@ from gideon_api_python.codes import lookup_item
 
 CODE_OR_NAME = Optional[Union[int, str]]
 
+
 def filter_diseases(agent: CODE_OR_NAME = None,
                     vector: CODE_OR_NAME = None,
                     vehicle: CODE_OR_NAME = None,

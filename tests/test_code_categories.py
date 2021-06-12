@@ -1,7 +1,9 @@
 import unittest
 from gideon_api_python.codes.categories import get_category
 
+
 class TestCategoryCheck(unittest.TestCase):
+
     def test_diseases(self):
         self.assertEqual(get_category('diseases'), '/diseases')
 
@@ -15,7 +17,8 @@ class TestCategoryCheck(unittest.TestCase):
         self.assertEqual(get_category('bacteria'), '/microbiology/bacteria')
 
     def test_mycobacteria(self):
-        self.assertEqual(get_category('mycobacteria'), '/microbiology/mycobacteria')
+        self.assertEqual(get_category('mycobacteria'),
+                         '/microbiology/mycobacteria')
 
     def test_yeasts(self):
         self.assertEqual(get_category('yeasts'), '/microbiology/yeasts')
@@ -44,4 +47,3 @@ class TestCategoryCheck(unittest.TestCase):
         self.assertEqual(get_category('country'), '/countries')
         self.assertEqual(get_category('bacterium'), '/microbiology/bacteria')
         self.assertEqual(get_category('yeast'), '/microbiology/yeasts')
-

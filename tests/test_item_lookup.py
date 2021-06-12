@@ -20,10 +20,8 @@ class TestLookupItemExact(unittest.TestCase):
             ('Zika', 12680),
         )
         for disease, id_ in disease_and_id:
-            self.assertEqual(
-                lookup_item(self._gideon_api, 'diseases', disease),
-                id_
-            )
+            self.assertEqual(lookup_item(self._gideon_api, 'diseases', disease),
+                             id_)
 
     def test_lookup_drugs(self):
         drug_and_id = (
@@ -35,10 +33,7 @@ class TestLookupItemExact(unittest.TestCase):
             ('Sofosbuvir / Velpatasvir', 21219),
         )
         for drug, id_ in drug_and_id:
-            self.assertEqual(
-                lookup_item(self._gideon_api, 'drugs', drug),
-                id_
-            )
+            self.assertEqual(lookup_item(self._gideon_api, 'drugs', drug), id_)
 
     def test_lookup_vaccines(self):
         vaccine_and_id = (
@@ -47,10 +42,8 @@ class TestLookupItemExact(unittest.TestCase):
             ('Varicella-Zoster immune globulin', 30380),
         )
         for vaccine, id_ in vaccine_and_id:
-            self.assertEqual(
-                lookup_item(self._gideon_api, 'vaccines', vaccine),
-                id_
-            )
+            self.assertEqual(lookup_item(self._gideon_api, 'vaccines', vaccine),
+                             id_)
 
     def test_lookup_bacteria(self):
         bacterium_and_id = (
@@ -63,9 +56,7 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for bacteria, id_ in bacterium_and_id:
             self.assertEqual(
-                lookup_item(self._gideon_api, 'bacteria', bacteria),
-                id_
-            )
+                lookup_item(self._gideon_api, 'bacteria', bacteria), id_)
 
     def test_lookup_mycobacteria(self):
         mycobacterium_and_id = (
@@ -76,8 +67,7 @@ class TestLookupItemExact(unittest.TestCase):
         for mycobacteria, id_ in mycobacterium_and_id:
             self.assertEqual(
                 lookup_item(self._gideon_api, 'mycobacteria', mycobacteria),
-                id_
-            )
+                id_)
 
     def test_lookup_yeasts(self):
         yeast_and_id = (
@@ -86,10 +76,8 @@ class TestLookupItemExact(unittest.TestCase):
             ('Trichosporon mycotoxinivorans', 7447),
         )
         for yeast, id_ in yeast_and_id:
-            self.assertEqual(
-                lookup_item(self._gideon_api, 'yeasts', yeast),
-                id_
-            )
+            self.assertEqual(lookup_item(self._gideon_api, 'yeasts', yeast),
+                             id_)
 
     def test_lookup_regions(self):
         region_and_id = (
@@ -98,10 +86,8 @@ class TestLookupItemExact(unittest.TestCase):
             ('North America', 15),
         )
         for region, id_ in region_and_id:
-            self.assertEqual(
-                lookup_item(self._gideon_api, 'regions', region),
-                id_
-            )
+            self.assertEqual(lookup_item(self._gideon_api, 'regions', region),
+                             id_)
 
     def test_lookup_countries(self):
         country_and_id = (
@@ -111,6 +97,4 @@ class TestLookupItemExact(unittest.TestCase):
         )
         for country, id_ in country_and_id:
             self.assertEqual(
-                lookup_item(self._gideon_api, 'countries', country),
-                id_
-            )
+                lookup_item(self._gideon_api, 'countries', country), id_)

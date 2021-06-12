@@ -1,11 +1,11 @@
 _GENERAL_CATEGORIES = 'diseases', 'drugs', 'vaccines'
-_FINGERPRINT_CATEGORIES = ('agents', 'vectors', 'vehicles',
-                           'reservoirs', 'countries')
+_FINGERPRINT_CATEGORIES = ('agents', 'vectors', 'vehicles', 'reservoirs',
+                           'countries')
 _MICROBIOLOGY_CATEGORIES = 'bacteria', 'mycobacteria', 'yeasts'
 _COUNTRIES = 'countries'
 _REGIONS = 'regions'
-_ALL_CATEGORIES = (_GENERAL_CATEGORIES + _MICROBIOLOGY_CATEGORIES
-                   + (_COUNTRIES, _REGIONS))
+_ALL_CATEGORIES = (_GENERAL_CATEGORIES + _MICROBIOLOGY_CATEGORIES +
+                   (_COUNTRIES, _REGIONS))
 
 
 def get_endpoint(category: str) -> str:
@@ -19,7 +19,7 @@ def get_endpoint(category: str) -> str:
     general_keyword = category if category[-1] == 's' else f'{category}s'
     if general_keyword in _GENERAL_CATEGORIES:
         return f'/{general_keyword}'
-    
+
     if category in _FINGERPRINT_CATEGORIES:
         return f'/diseases/fingerprint/{category}'
 

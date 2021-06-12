@@ -17,12 +17,11 @@ def is_expired(item_timestamp: dt, now: dt, expiration_hours: int) -> bool:
 
 class GideonAPICache:
     """Provides a cache for the API response."""
-    def __init__(
-            self,
-            default_expiration_hours: Optional[int] = None,
-            persistent_cache: bool = True,
-            buffer_size: int = 10
-        ) -> None:
+
+    def __init__(self,
+                 default_expiration_hours: Optional[int] = None,
+                 persistent_cache: bool = True,
+                 buffer_size: int = 10) -> None:
         """Initializes the API cache settings.
 
         Args:
@@ -48,7 +47,6 @@ class GideonAPICache:
                 except PermissionError:
                     pass
 
-
     def count_persistent_changes(self, force: bool = False) -> None:
         """Note when the local cache has been updated and periodically
             write changes to the local file system. This method is only
@@ -68,11 +66,8 @@ class GideonAPICache:
                 except PermissionError:
                     pass
 
-
-    def delete_old_queries(
-        self,
-        expiration_hours: Optional[int] = None
-    ) -> None:
+    def delete_old_queries(self,
+                           expiration_hours: Optional[int] = None) -> None:
         """Deletes any queries in the local cache that are beyond the
             specified expiration time.
 
@@ -89,17 +84,14 @@ class GideonAPICache:
         now = dt.now()
         if expiration_hours is not None:
             for path in list(self._cache_dictonary.keys()):
-                if is_expired(self._cache_dictonary[path][TIMESTAMP],
-                            now, expiration_hours):
+                if is_expired(self._cache_dictonary[path][TIMESTAMP], now,
+                              expiration_hours):
                     del self._cache_dictonary[path]
 
-
-    def query(
-        self,
-        api_path: str,
-        expiration_hours: Optional[int] = None,
-        delete_expired_entry: bool = False
-    ) -> Optional[Dict[str, Any]]:
+    def query(self,
+              api_path: str,
+              expiration_hours: Optional[int] = None,
+              delete_expired_entry: bool = False) -> Optional[Dict[str, Any]]:
         """Attempts to query the local cache file
 
         Args:
@@ -127,8 +119,8 @@ class GideonAPICache:
                 return self._cache_dictonary[api_path][RESPONSE]
 
             # Only return value if within time limit
-            if is_expired(self._cache_dictonary[api_path][TIMESTAMP],
-                          dt.now(), expiration_hours):
+            if is_expired(self._cache_dictonary[api_path][TIMESTAMP], dt.now(),
+                          expiration_hours):
                 if delete_expired_entry:
                     del self._cache_dictonary[api_path]
             else:
