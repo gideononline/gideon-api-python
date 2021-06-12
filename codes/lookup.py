@@ -21,8 +21,7 @@ ENDPOINT_ID_NAME = {
 }
 
 
-def lookup_item(category: str,
-                item: str) -> Optional[Union[int, str]]:
+def lookup_item(category: str, item: str) -> Optional[Union[int, str]]:
     """Looks up the GIDEON ID for a particular item.
 
     Args:
@@ -35,7 +34,8 @@ def lookup_item(category: str,
         If the item is found, the GIDEON API code
     """
     api_endpoint = get_endpoint(category)
-    all_category_items = gideon_api.query_gideon_api(api_endpoint)
+    all_category_items = gideon_api.query_gideon_api(api_endpoint,
+                                                     try_dataframe=False)
 
     # All items should be under the 'data' key
     assert 'data' in all_category_items
