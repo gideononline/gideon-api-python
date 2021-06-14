@@ -5,7 +5,7 @@ JSON = Dict[str, Any]
 PARAMS = Dict[str, Union[str, int]]
 CODE_OR_NAME = Union[int, str]
 
-from gideon_api.query.api_wrapper import GIDEON
+from gideon_api.query import GIDEON
 
 gideon_api = GIDEON(os.environ['GIDEON_API_KEY'], 0.5)
 

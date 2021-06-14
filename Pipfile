@@ -12,6 +12,8 @@ ipython = "*"
 pylint = "*"
 yapf = "*"
 jupyterlab = "*"
+build = "*"
+setuptools = "*"
 
 [requires]
 python_version = "3.8"

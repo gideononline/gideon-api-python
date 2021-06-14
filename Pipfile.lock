@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "87ff437d8ac61a96154328006f8024fc2f1714aea9158e021d01a2289d921b86"
+            "sha256": "0b782b93381aeb779838b6ebf2876f1b69ec94bec26644eda193395199d6584a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -213,6 +213,14 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
             "version": "==3.3.0"
+        },
+        "build": {
+            "hashes": [
+                "sha256:5950f98775a59f0c5ac68586691003d2db58a809fbea2ade3fe32109dfd12790",
+                "sha256:b798f3f490c779fa88c99816ebee97ab636acd6630b1d91c8cf8eb8a4d922a19"
+            ],
+            "index": "pypi",
+            "version": "==0.4.0"
         },
         "certifi": {
             "hashes": [
@@ -582,6 +590,13 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==0.8.2"
+        },
+        "pep517": {
+            "hashes": [
+                "sha256:ac59f3f6b9726a49e15a649474539442cf76e0697e39df4869d25e68e880931b",
+                "sha256:eba39d201ef937584ad3343df3581069085bacc95454c80188291d5b3ac7a249"
+            ],
+            "version": "==0.10.0"
         },
         "pexpect": {
             "hashes": [
