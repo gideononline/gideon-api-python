@@ -5,12 +5,12 @@ JSON = Dict[str, Any]
 PARAMS = Dict[str, Union[str, int]]
 CODE_OR_NAME = Union[int, str]
 
-from gideon_api_python.query.api_wrapper import GIDEON
+from gideon_api.query.api_wrapper import GIDEON
 
 gideon_api = GIDEON(os.environ['GIDEON_API_KEY'], 0.5)
 
-from gideon_api_python.codes import *
-from gideon_api_python.diseases import *
+from gideon_api.codes import *
+from gideon_api.diseases import *
 
 
 # Exports query wrapper functions to be visible outside `gideon_api`

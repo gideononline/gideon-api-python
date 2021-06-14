@@ -1,5 +1,5 @@
 import unittest
-from gideon_api_python import lookup_item
+from gideon_api import lookup_item
 
 
 class TestLookupItemExact(unittest.TestCase):

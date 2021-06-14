@@ -1,8 +1,8 @@
 """Look up the GIDEON API code for a particular item"""
 
 from typing import Optional, Union
-from gideon_api_python import gideon_api
-from gideon_api_python.codes.categories import get_endpoint
+from gideon_api import gideon_api
+from gideon_api.codes.categories import get_endpoint
 
 ENDPOINT_ID_NAME = {
     '/diseases': ('disease_code', 'disease'),

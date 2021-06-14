@@ -5,8 +5,8 @@ from typing import Dict, Optional, Union
 from urllib.parse import urlencode
 from pandas import DataFrame
 import requests
-from gideon_api_python import JSON, PARAMS
-from gideon_api_python.query.cache import GideonAPICache
+from gideon_api import JSON, PARAMS
+from gideon_api.query.cache import GideonAPICache
 
 
 class Authorization:

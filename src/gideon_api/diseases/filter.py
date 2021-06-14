@@ -1,6 +1,6 @@
 from typing import Optional
-from gideon_api_python import gideon_api, CODE_OR_NAME
-from gideon_api_python.codes import lookup_item
+from gideon_api import gideon_api, CODE_OR_NAME
+from gideon_api.codes import lookup_item
 
 
 def filter_diseases(agent: Optional[CODE_OR_NAME] = None,
