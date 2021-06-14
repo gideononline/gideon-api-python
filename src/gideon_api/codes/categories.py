@@ -1,6 +1,5 @@
 _GENERAL_CATEGORIES = 'diseases', 'drugs', 'vaccines'
-_FINGERPRINT_CATEGORIES = ('agents', 'vectors', 'vehicles', 'reservoirs',
-                           'countries')
+_FINGERPRINT_CATEGORIES = 'agents', 'vectors', 'vehicles', 'reservoirs'
 _MICROBIOLOGY_CATEGORIES = 'bacteria', 'mycobacteria', 'yeasts'
 _COUNTRIES = 'countries'
 _REGIONS = 'regions'
