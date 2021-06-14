@@ -1,4 +1,4 @@
-"""Interfaces with the GIDEON disease list"""
+"""Look up the GIDEON API code for a particular item"""
 
 from typing import Optional, Union
 from gideon_api_python import gideon_api
@@ -26,7 +26,8 @@ def lookup_item(category: str, item: str) -> Optional[Union[int, str]]:
 
     Args:
         category: The GIDEON API to search from such as diseases, vaccines,
-            countries, etc.
+            countries, etc. Refer to the get_endpoint function
+            documentation for a complete list.
         item:
             The name of the item, such as a particular disease or bacteria.
 

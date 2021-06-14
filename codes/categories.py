@@ -10,8 +10,15 @@ _ALL_CATEGORIES = (_GENERAL_CATEGORIES + _MICROBIOLOGY_CATEGORIES +
 
 def get_endpoint(category: str) -> str:
     """Checks the category refering to a GIDEON API piece with a
-        unique identifier. Allows for variation on spelling, such
-        as disease vs diseases or country vs countries
+        unique identifier.
+    Args:
+        category: One of the following: 'diseases', 'drugs', 'vaccines',
+            'agents', 'vectors', 'vehicles', 'reservoirs', 'bacteria',
+            'mycobacteria', 'yeasts', 'countries', 'regions'
+    
+    Returns:
+        A string representing the API endpoint for the particular category
+            of items in the GIDEON API
     """
     category = category.strip().lower()
 

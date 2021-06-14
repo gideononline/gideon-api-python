@@ -1,26 +1,29 @@
-from typing import Optional, Union
-from gideon_api_python import gideon_api
+from typing import Optional
+from gideon_api_python import gideon_api, CODE_OR_NAME
 from gideon_api_python.codes import lookup_item
 
-CODE_OR_NAME = Optional[Union[int, str]]
 
-
-def filter_diseases(agent: CODE_OR_NAME = None,
-                    vector: CODE_OR_NAME = None,
-                    vehicle: CODE_OR_NAME = None,
-                    resivoir: CODE_OR_NAME = None,
-                    country: CODE_OR_NAME = None):
+def filter_diseases(agent: Optional[CODE_OR_NAME] = None,
+                    vector: Optional[CODE_OR_NAME] = None,
+                    vehicle: Optional[CODE_OR_NAME] = None,
+                    resivoir: Optional[CODE_OR_NAME] = None,
+                    country: Optional[CODE_OR_NAME] = None):
+    """Filters diseases from the GIDEON API matching the parameters specified.
+        Refer to
+        https://api-doc.gideononline.com/#4272d285-ba04-435d-b7ad-deabe971330e
+        for full specifications
+    """
 
     if isinstance(agent, str):
-        agent = lookup_item(gideon_api, 'agents', agent)
+        agent = lookup_item('agents', agent)
     if isinstance(vector, str):
-        vector = lookup_item(gideon_api, 'vectors', vector)
+        vector = lookup_item('vectors', vector)
     if isinstance(vehicle, str):
-        vehicle = lookup_item(gideon_api, 'vehicles', vehicle)
+        vehicle = lookup_item('vehicles', vehicle)
     if isinstance(resivoir, str):
-        resivoir = lookup_item(gideon_api, 'reservoirs', resivoir)
+        resivoir = lookup_item('reservoirs', resivoir)
     if isinstance(country, str):
-        country = lookup_item(gideon_api, 'countries', country)
+        country = lookup_item('countries', country)
 
     params = {}
 

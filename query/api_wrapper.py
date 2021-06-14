@@ -1,10 +1,11 @@
-"""Provides a single point for authorization and queries"""
+"""Provides a single point for GIDEON API authorization and queries"""
 from datetime import datetime as dt
 from time import sleep
-from typing import Any, Dict, Optional, Union
+from typing import Dict, Optional, Union
 from urllib.parse import urlencode
 from pandas import DataFrame
 import requests
+from gideon_api_python import JSON, PARAMS
 from gideon_api_python.query.cache import GideonAPICache
 
 
@@ -15,11 +16,11 @@ class Authorization:
         self._api_key = api_key
         self._using_key = api_key is not None
 
-    def get_authorization_header(self):
+    def get_authorization_header(self) -> Optional[Dict[str, str]]:
         """Produces a dictonary that can be passed to the requests
             library as a header parameter.
         """
-        auth = f'api_key {self._api_key}' if self._using_key else None
+        auth = f'api_key {self._api_key}' if self._using_key else ''
         return {'Authorization': auth}
 
 
@@ -41,11 +42,11 @@ class GIDEON:
         self._last_call = None
 
     def query_gideon_api_online(
-        self,
-        path: str,
-        params: Optional[Dict] = None,
-        return_response_object: bool = False
-    ) -> Union[Optional[Dict[str, Any]], requests.Response]:
+            self,
+            path: str,
+            params: Optional[PARAMS] = None,
+            return_response_object: bool = False
+    ) -> Union[JSON, requests.Response]:
         """Queries the GIDEON API online
 
         Args:
@@ -86,11 +87,10 @@ class GIDEON:
     def query_gideon_api(
             self,
             api_path: str,
-            params: Optional[Dict] = None,
+            params: Optional[PARAMS] = None,
             try_dataframe: bool = True,
             force_online: bool = False,
-            cache_expiration_hours: Optional[int] = 24
-    ) -> Optional[Dict[str, Any]]:
+            cache_expiration_hours: Optional[int] = 24) -> Optional[JSON]:
         """Queries the GIDEON API either using the local cache or online.
 
         Args:

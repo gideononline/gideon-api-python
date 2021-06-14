@@ -12,6 +12,7 @@ RESPONSE = 'response'
 
 
 def is_expired(item_timestamp: dt, now: dt, expiration_hours: int) -> bool:
+    """Checks if an item is older than the specified hours"""
     return (now - item_timestamp).total_seconds() >= expiration_hours * 3600
 
 
