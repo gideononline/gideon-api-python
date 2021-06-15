@@ -12,16 +12,20 @@ from gideon_api.query.cache import GideonAPICache
 class Authorization:
     """Maintains the authorization for accessing the GIDEON API"""
 
-    def __init__(self, api_key: Optional[str] = None) -> None:
+    def __init__(self, api_key: str) -> None:
         self._api_key = api_key
-        self._using_key = api_key is not None
+
+    def set_api_key(self, api_key: str) -> None:
+        self._api_key = api_key
 
     def get_authorization_header(self) -> Optional[Dict[str, str]]:
         """Produces a dictonary that can be passed to the requests
             library as a header parameter.
         """
-        auth = f'api_key {self._api_key}' if self._using_key else ''
-        return {'Authorization': auth}
+        # Check if key is empty
+        if not self._api_key:
+            raise ValueError('GIDEON API key not provided')
+        return {'Authorization': f'api_key {self._api_key}'}
 
 
 _API_ORIGIN = 'https://api.gideononline.com'
@@ -40,6 +44,9 @@ class GIDEON:
         self._using_delay = delay is not None
         self._delay_period = delay
         self._last_call = None
+
+    def set_api_key(self, api_key: str) -> None:
+        self._auth.set_api_key(api_key)
 
     def query_gideon_api_online(
             self,

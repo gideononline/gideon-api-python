@@ -7,10 +7,15 @@ CODE_OR_NAME = Union[int, str]
 
 from gideon_api.query import GIDEON
 
-gideon_api = GIDEON(os.environ['GIDEON_API_KEY'], 0.5)
+gideon_api = GIDEON(os.environ.get('GIDEON_API_KEY'), 0.5)
 
 from gideon_api.codes import *
 from gideon_api.diseases import *
+
+
+def set_api_key(api_key):
+    """Sets the GIDEON API key"""
+    gideon_api.set_api_key(api_key)
 
 
 # Exports query wrapper functions to be visible outside `gideon_api`
