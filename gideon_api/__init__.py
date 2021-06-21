@@ -3,7 +3,6 @@ from typing import Any, Dict, Optional, Union
 
 JSON = Dict[str, Any]
 PARAMS = Dict[str, Union[str, int]]
-CODE_OR_NAME = Union[int, str]
 
 from gideon_api.query import GIDEON
 
