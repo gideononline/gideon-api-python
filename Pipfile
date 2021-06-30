@@ -14,6 +14,8 @@ yapf = "*"
 jupyterlab = "*"
 build = "*"
 setuptools = "*"
+sphinx = "*"
+sphinx-autodoc-typehints = "*"
 
 [requires]
 python_version = "3.8"
