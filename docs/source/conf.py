@@ -16,7 +16,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = 'GIDEON API Wrapper - Python'
@@ -27,7 +26,6 @@ author = 'GIDEON Informatics'
 version = ''
 # The full version, including alpha/beta/rc tags
 release = '0.1.0'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -40,6 +38,8 @@ release = '0.1.0'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
+    'sphinx_autodoc_typehints',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -69,7 +69,6 @@ exclude_patterns = []
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
 
-
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -98,12 +97,10 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
-
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'GIDEONAPIWrapper-Pythondoc'
-
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -129,20 +126,17 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'GIDEONAPIWrapper-Python.tex', 'GIDEON API Wrapper - Python Documentation',
-     'GIDEON Informatics', 'manual'),
+    (master_doc, 'GIDEONAPIWrapper-Python.tex',
+     'GIDEON API Wrapper - Python Documentation', 'GIDEON Informatics',
+     'manual'),
 ]
-
 
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'gideonapiwrapper-python', 'GIDEON API Wrapper - Python Documentation',
-     [author], 1)
-]
-
+man_pages = [(master_doc, 'gideonapiwrapper-python',
+              'GIDEON API Wrapper - Python Documentation', [author], 1)]
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -150,11 +144,11 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'GIDEONAPIWrapper-Python', 'GIDEON API Wrapper - Python Documentation',
-     author, 'GIDEONAPIWrapper-Python', 'One line description of project.',
+    (master_doc, 'GIDEONAPIWrapper-Python',
+     'GIDEON API Wrapper - Python Documentation', author,
+     'GIDEONAPIWrapper-Python', 'One line description of project.',
      'Miscellaneous'),
 ]
-
 
 # -- Options for Epub output -------------------------------------------------
 
@@ -172,6 +166,5 @@ epub_title = project
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
-
 
 # -- Extension configuration -------------------------------------------------

@@ -10,7 +10,8 @@ Welcome to GIDEON API Wrapper - Python's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
+.. automodule:: gideon_api
+   :members:
 
 Indices and tables
 ==================
