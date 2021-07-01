@@ -35,6 +35,7 @@ _BAD_PATH_RESP = {
 
 
 class GIDEON:
+    """Abstraction of querying GIDEON REST API via HTTP"""
 
     def __init__(self,
                  api_key: Optional[str],

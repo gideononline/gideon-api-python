@@ -13,6 +13,24 @@ Welcome to GIDEON API Wrapper - Python's documentation!
 .. automodule:: gideon_api
    :members:
 
+.. automodule:: gideon_api.query.api_wrapper
+   :members:
+
+.. automodule:: gideon_api.query.cache
+   :members:
+
+.. automodule:: gideon_api.codes.categories
+   :members:
+
+.. automodule:: gideon_api.codes.lookup
+   :members:
+
+.. automodule:: gideon_api.diseases.outbreaks
+   :members:
+
+.. automodule:: gideon_api.diseases.filter
+   :members:
+
 Indices and tables
 ==================
 

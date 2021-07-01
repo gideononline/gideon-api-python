@@ -1,3 +1,5 @@
+"""Handles a mapping between category names and GIDEON API endpoints"""
+
 _GENERAL_CATEGORIES = 'diseases', 'drugs', 'vaccines'
 _FINGERPRINT_CATEGORIES = 'agents', 'vectors', 'vehicles', 'reservoirs'
 _MICROBIOLOGY_CATEGORIES = 'bacteria', 'mycobacteria', 'yeasts'
@@ -9,15 +11,16 @@ _ALL_CATEGORIES = (_GENERAL_CATEGORIES + _MICROBIOLOGY_CATEGORIES +
 
 def get_endpoint(category: str) -> str:
     """Checks the category refering to a GIDEON API piece with a
-        unique identifier.
+    unique identifier.
+
     Args:
         category: One of the following: 'diseases', 'drugs', 'vaccines',
             'agents', 'vectors', 'vehicles', 'reservoirs', 'bacteria',
             'mycobacteria', 'yeasts', 'countries', 'regions'
-    
+
     Returns:
         A string representing the API endpoint for the particular category
-            of items in the GIDEON API
+        of items in the GIDEON API
     """
     category = category.strip().lower()
 
