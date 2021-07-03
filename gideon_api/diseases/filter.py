@@ -32,9 +32,10 @@ def filter_diseases(agent: Optional[int] = None,
             endemic to the country.
 
     Returns:
-        Returns list of all diseases matching filters. This is a valuable tool
-        for the diagnostician. It can be used to create disease profiles and to
-        generate reports on the status of diseases in any country.
+        DataFrame: Returns list of all diseases matching filters. This is a
+        valuable tool for the diagnostician. It can be used to create disease
+        profiles and to generate reports on the status of diseases in any
+        country.
     """
 
     params = {}

@@ -10,8 +10,8 @@ def outbreaks_by_year(year: int):
     Args:
         year: 4 digit year.
     Returns:
-        Returns a complete list of all outbreaks that occurred in a requested
-        year for every country.
+        DataFrame: Returns a complete list of all outbreaks that occurred in a
+        requested year for every country.
     """
     return gideon_api.query_gideon_api('/diseases/outbreaks', {'year': year})
 
@@ -26,8 +26,8 @@ def outbreaks_by_country_year(country_code: str, year: int):
         country_code: GIDEON country code
         year: 4 digit year.
     Returns:
-        Returns complete list of all outbreaks that were reported in a requested
-        country and year.
+        DataFrame: Returns complete list of all outbreaks that were reported in
+        a requested country and year.
     """
     return gideon_api.query_gideon_api(
         f'/diseases/outbreaks/distribution/{country_code}', {'year': year})
@@ -42,8 +42,8 @@ def latest_outbreaks_by_country(country_code: str):
     Args:
         country_code: GIDEON country code
     Returns:
-        Returns information of latest outbreak of every disease for a requested
-        country.
+        DataFrame: Returns information of latest outbreak of every disease for a
+        requested country.
     """
     return gideon_api.query_gideon_api(
         f'/diseases/countries/{country_code}/latest-outbreaks')
@@ -58,7 +58,8 @@ def outbreaks_by_disease(disease_code: int):
     Args:
         disease_code: GIDEON disease code
     Returns:
-        Returns list of all countries that have reported outbreaks of a disease.
+        DataFrame: Returns list of all countries that have reported outbreaks of
+        a disease.
     """
     return gideon_api.query_gideon_api(f'/diseases/{disease_code}/outbreaks')
 
@@ -72,7 +73,7 @@ def endemic_countries_by_disease(disease_code: int):
     Args:
         disease_code: GIDEON disease code
     Returns:
-        Returns list of all endemic countries of a disease.
+        DataFrame: Returns list of all endemic countries of a disease.
     """
     return gideon_api.query_gideon_api(f'/diseases/{disease_code}/countries')
 
@@ -86,6 +87,7 @@ def endemic_diseases_by_country(country_code: int):
     Args:
         country_code: GIDEON country code
     Returns:
-        Returns the list of all diseases that are endemic to the country.
+        DataFrame: Returns the list of all diseases that are endemic to the
+        country.
     """
     return gideon_api.query_gideon_api(f'/diseases/countries/{country_code}')

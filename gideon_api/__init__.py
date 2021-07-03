@@ -36,8 +36,9 @@ def query_online(path: str,
             returned rather than just the data.
 
     Returns:
-        The response data as a Python dictonary or requests object if specified
-        in the parameters.
+        Python dictonary or requests.Response object: Depending on the
+        return_response_object variable, either a Python dictonary of the
+        returned data or a requests.Response object of the call.
     """
     return gideon_api.query_gideon_api_online(path, params,
                                               return_response_object)
@@ -50,7 +51,7 @@ def query(api_path: str,
           cache_expiration_hours: Optional[int] = 24):
     """Query GIDEON API and automatically handles local caching and data type
     conversion.
-    
+
     Args:
         api_path: The API path as stated in the API documentation.
         params: Optional key-value pairs to attach as URL parameters.
@@ -59,9 +60,11 @@ def query(api_path: str,
             status.
         cache_expiration_hours: Sets the time, in hours, after which a response
             will expire from the cache.
-    
+
     Returns:
-        The API response as a pandas dataframe or JSON.
+        DataFrame or Python dictonary: The API response will be returned as a
+        DataFrame if try_dataframe is True and is applicable to the response
+        data or a Python dictonary representing the JSON data.
     """
     return gideon_api.query_gideon_api(api_path, params, try_dataframe,
                                        force_online, cache_expiration_hours)

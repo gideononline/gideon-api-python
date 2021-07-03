@@ -98,7 +98,8 @@ class GIDEON:
             params: Optional[PARAMS] = None,
             try_dataframe: bool = True,
             force_online: bool = False,
-            cache_expiration_hours: Optional[int] = 24) -> Optional[JSON]:
+            cache_expiration_hours: Optional[int] = 24
+    ) -> Union[DataFrame, JSON]:
         """Queries the GIDEON API either using the local cache or online.
 
         Args:
