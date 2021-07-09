@@ -15,6 +15,15 @@ Welcome to GIDEON API Wrapper - Python's documentation!
    gideon_id_codes
    api_query_wrapper
 
+Authentication
+==============
+All calls to the GIDEON API require an API key to work.
+This library Provide your GIDEON API key as an environment variable.
+The exact steps will depend on your operating system.
+
+- macOS / Linux - Add the following line to your .bashrc file: export GIDEON_API_KEY='<YOUR API KEY>'
+- Windows - Search for "Edit environment variables for your your account" in the Start Menu and add a GIDEON_API_KEY variable
+
 Indices and tables
 ==================
 

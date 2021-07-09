@@ -26,8 +26,8 @@ def lookup_item(category: str, item: str) -> Optional[Union[int, str]]:
 
     Args:
         category: The GIDEON API to search from such as diseases, vaccines,
-            countries, etc. Refer to the get_endpoint function
-            documentation for a complete list.
+            countries, etc. Refer to the :py:func:`gideon_api.get_endpoint`
+            function documentation for a complete list.
         item:
             The name of the item, such as a particular disease or bacteria.
 
