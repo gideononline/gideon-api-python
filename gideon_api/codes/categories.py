@@ -24,7 +24,7 @@ def get_endpoint(category: str) -> str:
     """
     category = category.strip().lower()
 
-    # General categories are all spelled pluarl ending in an 's'
+    # General categories are all spelled plural ending in an 's'
     general_keyword = category if category[-1] == 's' else f'{category}s'
     if general_keyword in _GENERAL_CATEGORIES:
         return f'/{general_keyword}'
@@ -45,7 +45,7 @@ def get_endpoint(category: str) -> str:
     if category in ('country', _COUNTRIES):
         return f'/{_COUNTRIES}'
 
-    # Singular or pluarl spelling of regions
+    # Singular or plural spelling of regions
     if category in (_REGIONS[:-1], _REGIONS):
         return f'/travel/{_REGIONS}'
 

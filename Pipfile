@@ -16,6 +16,7 @@ build = "*"
 setuptools = "*"
 sphinx = "*"
 sphinx-autodoc-typehints = "*"
+twine = "*"
 
 [requires]
 python_version = "3.9"

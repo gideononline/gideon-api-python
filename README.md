@@ -3,6 +3,7 @@
 ## GIDEON Authentication
 
 - The package will attempt to read the environment variable `$GIDEON_API_KEY`, which is set to your GIDEON API key.
+- The API key can be set in the terminal or `.bashrc` file as `export GIDEON_API_KEY=<YOUR API KEY>`
 - The GIDEON API key can be updated within Python by calling the function `gideon_api.set_api_key(<YOUR API KEY>)`
 
 ## Developer Setup
@@ -21,15 +22,11 @@
 
 ### Build the HTML Documentation
 
-1. Navigate to the `docs/` directory
-2. Run `make html` to build the HTML documents in the `build/` subdirectory
+1. Activate the pipenv environment
+2. Navigate to the `docs/` directory
+3. Run `make html` to build the HTML documents in the `build/` subdirectory
 
-### Future Plans
-
-- `gideon_api_python.set_api_key`
-- `gideon_api_python.authorize_user`
-
-## Quick Tutorial
+## Functionality Overview
 
 ### GIDEON ID Codes
 

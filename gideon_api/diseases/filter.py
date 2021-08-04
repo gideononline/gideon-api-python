@@ -51,7 +51,7 @@ def filter_diseases(agent: Optional[int] = None,
     if country is not None:
         params['country'] = country
 
-    # Do not pass an empty dictonary
+    # Do not pass an empty dictionary
     if not params:
         params = None
 

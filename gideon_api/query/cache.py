@@ -35,7 +35,7 @@ class GideonAPICache:
                 The number of changes to store in memory before writing
                     to the local file system.
         """
-        self._cache_dictonary = {}
+        self._cache_dictionary = {}
         self._default_expiration_hours = default_expiration_hours
         self._persistent_cache = persistent_cache
         self._max_buffer = buffer_size
@@ -44,7 +44,7 @@ class GideonAPICache:
         if persistent_cache and os.path.isfile(CACHE_FILE):
             with open(CACHE_FILE, 'rb') as f:
                 try:
-                    self._cache_dictonary = pickle.load(f)
+                    self._cache_dictionary = pickle.load(f)
                 except PermissionError:
                     pass
 
@@ -62,7 +62,7 @@ class GideonAPICache:
             if force or (self._unsaved_changes >= self._max_buffer):
                 try:
                     with open(CACHE_FILE, 'wb') as f:
-                        pickle.dump(self._cache_dictonary, f)
+                        pickle.dump(self._cache_dictionary, f)
                     self._unsaved_changes = 0
                 except PermissionError:
                     pass
@@ -81,13 +81,13 @@ class GideonAPICache:
         if expiration_hours is None:
             expiration_hours = self._default_expiration_hours
 
-        # Only clear the cache dictonary if a time is set
+        # Only clear the cache dictionary if a time is set
         now = dt.now()
         if expiration_hours is not None:
-            for path in list(self._cache_dictonary.keys()):
-                if is_expired(self._cache_dictonary[path][TIMESTAMP], now,
+            for path in list(self._cache_dictionary.keys()):
+                if is_expired(self._cache_dictionary[path][TIMESTAMP], now,
                               expiration_hours):
-                    del self._cache_dictonary[path]
+                    del self._cache_dictionary[path]
 
     def query(self,
               api_path: str,
@@ -104,12 +104,12 @@ class GideonAPICache:
                 cached response if it is found, but outside the expired
                 hours limit.
 
-        Retuns:
+        Returns:
             If the path is found, and the most recent update is within
                 the expiration_hours, this will return a Python
-                dictonary representing the query.
+                dictionary representing the query.
         """
-        if api_path in self._cache_dictonary:
+        if api_path in self._cache_dictionary:
             # Try default expiration time if not specified
             if expiration_hours is None:
                 expiration_hours = self._default_expiration_hours
@@ -117,34 +117,34 @@ class GideonAPICache:
             # If there still is not expiration time specified,
             # just return value
             if expiration_hours is None:
-                return self._cache_dictonary[api_path][RESPONSE]
+                return self._cache_dictionary[api_path][RESPONSE]
 
             # Only return value if within time limit
-            if is_expired(self._cache_dictonary[api_path][TIMESTAMP], dt.now(),
+            if is_expired(self._cache_dictionary[api_path][TIMESTAMP], dt.now(),
                           expiration_hours):
                 if delete_expired_entry:
-                    del self._cache_dictonary[api_path]
+                    del self._cache_dictionary[api_path]
             else:
-                return self._cache_dictonary[api_path][RESPONSE]
+                return self._cache_dictionary[api_path][RESPONSE]
 
     def write(self, api_path: str, value: Dict[str, Any]) -> None:
         """Writes the changes to cache
 
         Args:
             api_path: The path used to call the query from the API
-            value: The JSON, represented as a Python dictonary,
+            value: The JSON, represented as a Python dictionary,
                 returned from the server.
         """
         now = dt.now()
         # Check if the query has been stored previously
-        if api_path in self._cache_dictonary:
-            self._cache_dictonary[api_path][TIMESTAMP] = now
+        if api_path in self._cache_dictionary:
+            self._cache_dictionary[api_path][TIMESTAMP] = now
             # Only update and push cache if there is a change
-            if value != self._cache_dictonary[api_path][RESPONSE]:
-                self._cache_dictonary[api_path][RESPONSE] = value
+            if value != self._cache_dictionary[api_path][RESPONSE]:
+                self._cache_dictionary[api_path][RESPONSE] = value
                 self.count_persistent_changes()
         else:
-            self._cache_dictonary[api_path] = {
+            self._cache_dictionary[api_path] = {
                 TIMESTAMP: now,
                 RESPONSE: value,
             }

@@ -19,7 +19,7 @@ class Authorization:
         self._api_key = api_key
 
     def get_authorization_header(self) -> Optional[Dict[str, str]]:
-        """Produces a dictonary that can be passed to the requests
+        """Produces a dictionary that can be passed to the requests
             library as a header parameter.
         """
         # Check if key is empty
@@ -60,13 +60,13 @@ class GIDEON:
         Args:
             path: The path from the GIDEON domain. This string is the
                 same as what is listed on the API docs.
-            params: A dictonary of key-value pairs which will be
+            params: A dictionary of key-value pairs which will be
                 converted to URL parameters.
             return_response_object: Returns the Response object with
                 the entire call instead of just the response.
 
         Returns:
-            A dictonary representing the API response or Response
+            A dictionary representing the API response or Response
                 object
 
         Raises:
@@ -104,16 +104,16 @@ class GIDEON:
 
         Args:
             path: The API endpoint to query.
-            params: Dictonary key value pairs to be passed.
-            try_dataframe: Convert dictonary to pandas DataFrame if possible.
+            params: Dictionary key value pairs to be passed.
+            try_dataframe: Convert dictionary to pandas DataFrame if possible.
             force_online: Query the API online, rather than the local
-                cache. However, the respoonse will still be saved to cache.
+                cache. However, the response will still be saved to cache.
             cache_expiration_hours: The number of hours since the present
                 moment which a cached response will be considered valid.
                 Defaults to 24 hours.
 
         Returns:
-            The API JSON response in the form of a Python dictonary.
+            The API JSON response in the form of a Python dictionary.
         """
         # Create the URL to cache
         uri = api_path
