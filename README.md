@@ -2,17 +2,25 @@
 
 A package for accessing the GIDEON API using Python.
 
-The `gideon` package provides functions to access the GIDEON API without the need of writing your own REST API queries.
+The `gideon_api` package provides functions to access the GIDEON API without the need of writing your own REST API queries.
 
 ## GIDEON Authentication
 
-- The package will attempt to read the environment variable `$GIDEON_API_KEY`, which is set to your GIDEON API key.
-- The API key can be set in the terminal or `.bashrc` file as `export GIDEON_API_KEY=<YOUR API KEY>`
-- The GIDEON API key can be updated within Python by calling the function `gideon_api.set_api_key(<YOUR API KEY>)`
+- The GIDEON API requires the use of an API key, which can be set in two ways:
+1. The package will attempt to read the environment variable `$GIDEON_API_KEY`, which is set to your GIDEON API key.
+   - The API key can be set either in the terminal for the current terminal session only or the `$HOME/.bashrc` file for persistent storage.
+   In either case, set the API key with the line `export GIDEON_API_KEY=<YOUR API KEY>`
+2. The GIDEON API key can be updated within Python by calling the function `gideon_api.set_api_key(<YOUR API KEY>)`.
+   Be sure to protect your key and not store it in code or a repository shared with others.
 
-## Developer Setup
+## Basic Installation
+```
+$ pip install --user gideon-api
+```
 
-### Install the Virtual Environment
+## Developer Installation
+
+### Install the Python Virtual Environment
 
 1. Install the `pipenv` Python environment manager.
    - Install the `pipenv` Python package to your Python user install directory with the following terminal command: `$python3 -m pip install --user pipenv`
