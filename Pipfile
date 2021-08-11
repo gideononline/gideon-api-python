@@ -6,17 +6,18 @@ name = "pypi"
 [packages]
 requests = "*"
 pandas = "*"
+geopandas = "*"
 
 [dev-packages]
 ipython = "*"
+jupyterlab = "*"
 pylint = "*"
 yapf = "*"
-jupyterlab = "*"
 build = "*"
 setuptools = "*"
+twine = "*"
 sphinx = "*"
 sphinx-autodoc-typehints = "*"
-twine = "*"
 
 [requires]
 python_version = "3.9"
