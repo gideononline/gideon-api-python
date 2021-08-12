@@ -11,10 +11,10 @@ Welcome to GIDEON API Wrapper - Python's documentation!
    :caption: Contents:
 
    outbreaks
+   export
    disease_filter
    gideon_id_codes
    api_query_wrapper
-   export
 
 Authentication
 ==============

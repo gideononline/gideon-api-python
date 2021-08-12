@@ -51,6 +51,7 @@ Thumbs.db
 *.pickle
 *.ipynb
 .ipynb_checkpoints/
+*.geojson
 build/
 *.egg-info/
 
