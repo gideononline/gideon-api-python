@@ -14,6 +14,7 @@ Welcome to GIDEON API Wrapper - Python's documentation!
    disease_filter
    gideon_id_codes
    api_query_wrapper
+   export
 
 Authentication
 ==============

@@ -15,6 +15,7 @@ gideon_api = GIDEON(os.environ.get('GIDEON_API_KEY'), 0.5)
 
 from gideon_api.codes import *
 from gideon_api.diseases import *
+from gideon_api.utilities import *
 
 
 def set_api_key(api_key: str) -> None:
