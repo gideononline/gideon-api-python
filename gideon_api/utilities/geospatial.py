@@ -11,7 +11,7 @@ _CENTROID = 'centroid'
 
 def _get_centroid(series, lat_col: str = _LAT, lon_col: str = _LON) -> Point:
     """Returns a point from the lat/lon columns"""
-    return Point(float(series[lat_col]), float(series[lon_col]))
+    return Point(series[lon_col], series[lat_col])
 
 
 def to_geojson(df,
@@ -34,9 +34,8 @@ def to_geojson(df,
     # Check if the dataframe has lat/lon data
     if _LAT in df and _LON in df:
         df = df[df[_LAT].notna() & df[_LON].notna()].copy()
-        # Temporary fix for latitude and longitude reversed
-        df[_CENTROID] = df.apply(lambda x: _get_centroid(x, _LON, _LAT),
-                                 'columns')
+        df[[_LAT, _LON]] = df[[_LAT, _LON]].astype('float')
+        df[_CENTROID] = df.apply(_get_centroid, 'columns')
         gdf = geopandas.GeoDataFrame(df, geometry=_CENTROID)
         gdf.to_file(filename, 'GeoJSON')
         return gdf
